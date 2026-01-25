@@ -162,7 +162,7 @@ const Hero: React.FC<HeroProps> = ({ onEnterControlRoom }) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={onEnterControlRoom}>
-          <span className="relative z-10">▶ Enter Strategy Control Room</span>
+          <span className="relative z-10">▶ Enter Control Room</span>
           <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </motion.button>
       </div>

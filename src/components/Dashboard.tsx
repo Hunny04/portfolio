@@ -1,31 +1,50 @@
- import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
+import { motion } from "framer-motion";
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from "recharts";
+import { FeatureCard } from "./FeatureCard";
+import LogoLoop from "./LogoLoop";
 
 const Dashboard = () => {
-  const [activeMode, setActiveMode] = useState('seo');
-
-  const strategyModes = [
-    { id: 'seo', label: '🔍 SEO & Store Growth', color: 'cyan' },
-    { id: 'ads', label: '📢 Paid Ads (Meta)', color: 'green' },
-    { id: 'social', label: '📱 Social Media Growth', color: 'purple' },
-    { id: 'strategy', label: '🎯 Brand Strategy', color: 'yellow' }
+  const growthItems = [
+    {
+      title: "SEO & Store Growth",
+      icon: "🔍",
+      tools: ["Google Analytics", "Search Console", "SEMrush"],
+    },
+    {
+      title: "Content & Branding",
+      icon: "🎨",
+      tools: ["Canva", "Figma", "ChatGPT", "Photoshop"],
+    },
+    {
+      title: "SEO & Organic Growth",
+      icon: "📈",
+      tools: ["Ahrefs", "SEMrush", "Yoast"],
+    },
+    {
+      title: "Trust & Optimization",
+      icon: "🛡️",
+      tools: ["Hotjar", "Google Reviews", "Trustpilot"],
+    },
   ];
 
   const metricsData = [
-    { name: 'Jan', engagement: 4000, acquisition: 2400, performance: 2400, efficiency: 3200 },
-    { name: 'Feb', engagement: 3000, acquisition: 1398, performance: 2210, efficiency: 2800 },
-    { name: 'Mar', engagement: 2000, acquisition: 9800, performance: 2290, efficiency: 2400 },
-    { name: 'Apr', engagement: 2780, acquisition: 3908, performance: 2000, efficiency: 2200 },
-    { name: 'May', engagement: 1890, acquisition: 4800, performance: 2181, efficiency: 2100 },
-    { name: 'Jun', engagement: 2390, acquisition: 3800, performance: 2500, efficiency: 2300 }
+    { name: "Jan", engagement: 4000, acquisition: 2400, performance: 2400, efficiency: 3200 },
+    { name: "Feb", engagement: 3000, acquisition: 1398, performance: 2210, efficiency: 2800 },
+    { name: "Mar", engagement: 2000, acquisition: 9800, performance: 2290, efficiency: 2400 },
+    { name: "Apr", engagement: 2780, acquisition: 3908, performance: 2000, efficiency: 2200 },
+    { name: "May", engagement: 1890, acquisition: 4800, performance: 2181, efficiency: 2100 },
+    { name: "Jun", engagement: 2390, acquisition: 3800, performance: 2500, efficiency: 2300 },
   ];
 
-  const tools = [
-    { name: 'Meta Ads', icon: '📊', description: 'Advanced campaign optimization' },
-    { name: 'Shopify', icon: '🛒', description: 'E-commerce platform expertise' },
-    { name: 'Analytics', icon: '📈', description: 'Data-driven insights' },
-    { name: 'Strategy', icon: '🎯', description: 'Brand growth frameworks' }
+  const imageLogos = [
+    { src: "/logos/google-analytics.svg", alt: "Company 1", href: "https://company1.com" },
+    { src: "/logos/google-search-console.svg", alt: "Company 2", href: "https://company2.com" },
+    { src: "/logos/meta-ads.svg", alt: "Company 3", href: "https://company3.com" },
+    { src: "/logos/google-ads.svg", alt: "Company 4", href: "https://company4.com" },
+    { src: "/logos/canva.svg", alt: "Company 5", href: "https://company5.com" },
+    { src: "/logos/figma.svg", alt: "Company 6", href: "https://company6.com" },
+    { src: "/logos/chatgpt.svg", alt: "Company 7", href: "https://company7.com" },
+    { src: "/logos/photoshop.svg", alt: "Company 8", href: "https://company8.com" },
   ];
 
   return (
@@ -34,27 +53,14 @@ const Dashboard = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-bold text-center mb-16 font-mono"
-        >
+          className="text-4xl md:text-6xl font-bold text-center mb-16 font-mono">
           STRATEGY CONTROL ROOM
         </motion.h2>
 
         {/* Strategy Modes */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-          {strategyModes.map((mode) => (
-            <motion.button
-              key={mode.id}
-              onClick={() => setActiveMode(mode.id)}
-              className={`p-6 rounded-lg border-2 transition-all duration-300 font-mono text-sm ${
-                activeMode === mode.id
-                  ? `border-${mode.color}-400 bg-${mode.color}-400/10 text-${mode.color}-400 shadow-lg shadow-${mode.color}-400/20`
-                  : 'border-gray-600 bg-gray-800/50 text-gray-300 hover:border-gray-500'
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {mode.label}
-            </motion.button>
+          {growthItems.map((item) => (
+            <FeatureCard key={item.title} item={item} />
           ))}
         </div>
 
@@ -64,9 +70,8 @@ const Dashboard = () => {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="bg-gray-800/50 backdrop-blur-sm border border-gray-600 rounded-lg p-6"
-            >
-              <h3 className="text-2xl font-bold mb-6 text-cyan-400 font-mono">LIVE METRICS</h3>
+              className="bg-gray-800/50 backdrop-blur-sm border border-gray-600 rounded-lg p-6">
+              <h3 className="text-2xl font-bold mb-6 text-cyan-400 font-mono">VISIBLE METRICS</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
@@ -77,9 +82,8 @@ const Dashboard = () => {
                     <motion.div
                       className="bg-green-400 h-2 rounded-full"
                       initial={{ width: 0 }}
-                      whileInView={{ width: '80%' }}
-                      transition={{ duration: 2 }}
-                    ></motion.div>
+                      whileInView={{ width: "80%" }}
+                      transition={{ duration: 2 }}></motion.div>
                   </div>
                 </div>
 
@@ -92,9 +96,8 @@ const Dashboard = () => {
                     <motion.div
                       className="bg-cyan-400 h-2 rounded-full"
                       initial={{ width: 0 }}
-                      whileInView={{ width: '65%' }}
-                      transition={{ duration: 2, delay: 0.2 }}
-                    ></motion.div>
+                      whileInView={{ width: "65%" }}
+                      transition={{ duration: 2, delay: 0.2 }}></motion.div>
                   </div>
                 </div>
 
@@ -107,9 +110,8 @@ const Dashboard = () => {
                     <motion.div
                       className="bg-purple-400 h-2 rounded-full"
                       initial={{ width: 0 }}
-                      whileInView={{ width: '90%' }}
-                      transition={{ duration: 2, delay: 0.4 }}
-                    ></motion.div>
+                      whileInView={{ width: "90%" }}
+                      transition={{ duration: 2, delay: 0.4 }}></motion.div>
                   </div>
                 </div>
 
@@ -122,9 +124,8 @@ const Dashboard = () => {
                     <motion.div
                       className="bg-yellow-400 h-2 rounded-full"
                       initial={{ width: 0 }}
-                      whileInView={{ width: '75%' }}
-                      transition={{ duration: 2, delay: 0.6 }}
-                    ></motion.div>
+                      whileInView={{ width: "75%" }}
+                      transition={{ duration: 2, delay: 0.6 }}></motion.div>
                   </div>
                 </div>
               </div>
@@ -138,9 +139,9 @@ const Dashboard = () => {
                     <YAxis stroke="#9CA3AF" />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: '#1F2937',
-                        border: '1px solid #374151',
-                        borderRadius: '8px'
+                        backgroundColor: "#1F2937",
+                        border: "1px solid #374151",
+                        borderRadius: "8px",
                       }}
                     />
                     <Area
@@ -159,6 +160,22 @@ const Dashboard = () => {
                       fill="#10B981"
                       fillOpacity={0.3}
                     />
+                    <Area
+                      type="monotone"
+                      dataKey="acquisition"
+                      stackId="1"
+                      stroke="rgb(192 132 252)"
+                      fill="rgb(192 132 252)"
+                      fillOpacity={0.3}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="acquisition"
+                      stackId="1"
+                      stroke="rgb(250 204 21)"
+                      fill="rgb(250 204 21)"
+                      fillOpacity={0.3}
+                    />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -170,57 +187,102 @@ const Dashboard = () => {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="bg-gray-800/50 backdrop-blur-sm border border-gray-600 rounded-lg p-6"
-            >
+              className="bg-gray-800/50 backdrop-blur-sm border border-gray-600 rounded-lg p-6">
               <h3 className="text-2xl font-bold mb-6 text-purple-400 font-mono">STRATEGY INTELLIGENCE</h3>
 
               {/* Tools */}
               <div className="space-y-4 mb-8">
                 <h4 className="text-lg font-semibold text-gray-300 mb-4">Core Tools</h4>
-                {tools.map((tool, index) => (
-                  <motion.div
-                    key={tool.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-center space-x-3 p-3 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-colors cursor-pointer group"
-                  >
-                    <span className="text-2xl">{tool.icon}</span>
-                    <div>
-                      <div className="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">
-                        {tool.name}
-                      </div>
-                      <div className="text-sm text-gray-400">{tool.description}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Frameworks */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-gray-300 mb-4">Strategic Frameworks</h4>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 border border-cyan-400/20 rounded-lg"
-                >
-                  <h5 className="font-semibold text-cyan-400 mb-2">Content Pillars Strategy</h5>
-                  <p className="text-sm text-gray-300">Building authoritative content ecosystems that drive organic growth and establish thought leadership.</p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="p-4 bg-gradient-to-r from-green-400/10 to-cyan-400/10 border border-green-400/20 rounded-lg"
-                >
-                  <h5 className="font-semibold text-green-400 mb-2">Funnel Optimization</h5>
-                  <p className="text-sm text-gray-300">Data-driven conversion rate optimization from awareness to revenue generation.</p>
-                </motion.div>
+                {/* TOOLS */}
+                <LogoLoop
+                  logos={imageLogos}
+                  speed={50}
+                  direction="left"
+                  logoHeight={60}
+                  gap={60}
+                  hoverSpeed={0}
+                  scaleOnHover
+                  fadeOut
+                  fadeOutColor="transparent"
+                  ariaLabel="Technology partners"
+                  renderItem={(item: any) => {
+                    return (
+                      <img
+                        src={item.src!}
+                        alt={item.alt!}
+                        className="h-12 object-contain fill-white bg-white rounded-md"
+                      />
+                    );
+                  }}
+                />
+                <LogoLoop
+                  logos={imageLogos}
+                  speed={50}
+                  direction="right"
+                  logoHeight={60}
+                  gap={60}
+                  hoverSpeed={0}
+                  scaleOnHover
+                  fadeOut
+                  fadeOutColor="transparent"
+                  ariaLabel="Technology partners"
+                  renderItem={(item: any) => {
+                    return (
+                      <img
+                        src={item.src!}
+                        alt={item.alt!}
+                        className="h-12 object-contain fill-white bg-white rounded-md"
+                      />
+                    );
+                  }}
+                />
+                <LogoLoop
+                  logos={imageLogos}
+                  speed={50}
+                  direction="left"
+                  logoHeight={60}
+                  gap={60}
+                  hoverSpeed={0}
+                  scaleOnHover
+                  fadeOut
+                  fadeOutColor="transparent"
+                  ariaLabel="Technology partners"
+                  renderItem={(item: any) => {
+                    return (
+                      <img
+                        src={item.src!}
+                        alt={item.alt!}
+                        className="h-12 object-contain fill-white bg-white rounded-md"
+                      />
+                    );
+                  }}
+                />
+                <LogoLoop
+                  logos={imageLogos}
+                  speed={50}
+                  direction="right"
+                  logoHeight={60}
+                  gap={60}
+                  hoverSpeed={0}
+                  scaleOnHover
+                  fadeOut
+                  fadeOutColor="transparent"
+                  ariaLabel="Technology partners"
+                  renderItem={(item: any) => {
+                    return (
+                      <img
+                        src={item.src!}
+                        alt={item.alt!}
+                        className="h-12 object-contain fill-white bg-white rounded-md"
+                      />
+                    );
+                  }}
+                />
               </div>
             </motion.div>
           </div>
         </div>
+        <p className="mt-10 text-base text-gray-400 text-center">Digital growth is 80% system, 20% tools.</p>
       </div>
     </section>
   );

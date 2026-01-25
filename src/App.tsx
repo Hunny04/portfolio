@@ -6,7 +6,6 @@ import Hero from "./components/Hero";
 import Dashboard from "./components/Dashboard";
 import CaseStudies from "./components/CaseStudies";
 import About from "./components/About";
-import CTA from "./components/CTA";
 import CustomCursor from "./components/CustomCursor";
 import ParticleSystem from "./components/ParticleSystem";
 import DataStreams from "./components/DataStreams";
@@ -16,8 +15,9 @@ import PageLoader from "./components/PageLoader";
 gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
-  const [showMissionFiles, setShowMissionFiles] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [explore, setExplore] = useState(false);
+
   useEffect(() => {
     // Initialize Lenis for smooth scrolling
     const lenis = new Lenis({
@@ -67,24 +67,21 @@ const App = () => {
 
       {/* Main Content */}
       <CustomCursor />
-      <Hero onEnterControlRoom={() => setShowMissionFiles(true)} />
-      <Dashboard />
-      <CaseStudies />
-      <About />
-      <CTA />
-
-      {/* Mission Files Modal */}
-      {showMissionFiles && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="relative w-full h-full max-w-7xl mx-4 my-4 bg-gray-900 rounded-lg overflow-hidden">
-            <button
-              onClick={() => setShowMissionFiles(false)}
-              className="absolute top-4 right-4 z-10 text-white hover:text-cyan-400 transition-colors">
-              ✕
-            </button>
-            <CaseStudies />
-          </div>
-        </div>
+      <Hero
+        onEnterControlRoom={() => {
+          setExplore(true);
+          setTimeout(() => {
+            const node = document.getElementById("mission-files");
+            node?.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        }}
+      />
+      {explore && (
+        <>
+          <CaseStudies />
+          <Dashboard />
+          <About />
+        </>
       )}
     </div>
   );

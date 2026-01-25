@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
+import RotatingText from "./RotatingText";
 
 interface Mission {
   brand: string;
@@ -14,8 +15,6 @@ interface Mission {
   title: string;
   status: string;
   years: number;
-  signals: number;
-  systems: number;
   objective: string;
   responsibilities: string[];
   tools: string[];
@@ -25,6 +24,8 @@ interface Mission {
   color: string;
   link: string;
   logo: string;
+  yearsLabel: string;
+  position: string;
 }
 
 const missions: Mission[] = [
@@ -35,9 +36,8 @@ const missions: Mission[] = [
     brandColor: "emerald",
     title: "Shaola",
     status: "Archived",
-    years: 1,
-    signals: 12,
-    systems: 3,
+    years: 6,
+    yearsLabel: "Months",
     objective: "Build foundational execution discipline and signal awareness.",
     responsibilities: [
       "Assisted in campaign execution workflows",
@@ -56,6 +56,7 @@ const missions: Mission[] = [
     color: "#deb887",
     link: "https://shaaola.com/",
     logo: "/public/images/shaola.avif",
+    position: "Marketing Intern",
   },
   {
     id: "dhaarami",
@@ -63,9 +64,8 @@ const missions: Mission[] = [
     brandColor: "violet",
     title: "Dhaarami Fashion",
     status: "Completed",
-    years: 1,
-    signals: 18,
-    systems: 5,
+    years: 1.5,
+    yearsLabel: "Year",
     objective: "Strengthen brand presence and content performance through structured strategy.",
     responsibilities: [
       "Owned seasonal content strategy",
@@ -84,6 +84,7 @@ const missions: Mission[] = [
     color: "#008b8b",
     link: "https://dhaarmifashion.com/",
     logo: "/public/images/dhaarmi.png",
+    position: "Digital Marketing Lead",
   },
   {
     id: "shria",
@@ -92,8 +93,7 @@ const missions: Mission[] = [
     title: "Shria Traditions",
     status: "Accomplished",
     years: 1,
-    signals: 25,
-    systems: 7,
+    yearsLabel: "Year",
     objective: "Build scalable growth systems while preserving heritage brand identity.",
     responsibilities: [
       "Led end-to-end digital strategy",
@@ -112,6 +112,7 @@ const missions: Mission[] = [
     color: "#d7d4aae8",
     link: "https://byshria.com/",
     logo: "/public/images/shria.jpg",
+    position: "Brand Strategist",
   },
 ];
 
@@ -182,11 +183,11 @@ export default function MissionFiles(): JSX.Element {
   const y = useTransform(scrollYProgress, [0, 1], [0, -180]);
 
   return (
-    <section className="min-h-screen bg-black text-white px-6 py-24 relative overflow-hidden">
+    <section id="mission-files" className="min-h-screen bg-black text-white px-6 py-24 relative overflow-hidden">
       {/* CRT Scanlines */}
       <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.03)_0px,rgba(255,255,255,0.03)_1px,transparent_2px,transparent_4px)] opacity-20" />
       {/* HERO */}
-      <motion.div style={{ y }} className="max-w-6xl mx-auto text-center mb-24">
+      <motion.div style={{ y }} className="max-w-6xl mx-auto text-center mt-24 mb-10">
         <h1 className="text-6xl md:text-7xl font-bold">Mission Files</h1>
         <p className="mt-6 text-2xl text-zinc-300">Classified records of strategy, growth systems, and execution.</p>
       </motion.div>
@@ -198,12 +199,21 @@ export default function MissionFiles(): JSX.Element {
           <p className="text-zinc-400 mt-2">Years Experience</p>
         </div>
         <div>
-          <Counter value={55} />
-          <p className="text-zinc-400 mt-2">Signals Monitored</p>
+          <p className="text-zinc-400 mt-2 text-4xl">As</p>
         </div>
         <div>
-          <Counter value={15} />
-          <p className="text-zinc-400 mt-2">Systems Operated</p>
+          <RotatingText
+            texts={["Brand Strategist", "Marketing Head", "Creative Creator", "Digital Marketing", "SEO Specialist"]}
+            mainClassName="px-2 sm:px-2 md:px-3 bg-transparent text-4xl text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+            staggerFrom={"last"}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-120%" }}
+            staggerDuration={0.025}
+            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+            transition={{ type: "spring", damping: 30, stiffness: 400 }}
+            rotationInterval={2500}
+          />
         </div>
       </div>
 
@@ -238,7 +248,7 @@ export default function MissionFiles(): JSX.Element {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-zinc-400 font-mono">
-                        <span>Mission 03 — </span>
+                        <span>Mission 0{i + 1} — </span>
                         <span className="hover:underline">{m.title}</span>
                       </a>
                     </div>
@@ -248,16 +258,14 @@ export default function MissionFiles(): JSX.Element {
 
                 <div className="grid grid-cols-3 gap-4 mt-8 text-center">
                   <div>
-                    <Counter value={m.years} color={m.color} />
-                    <p className="text-xs text-zinc-400">Years</p>
+                    <Counter value={m.years} color={m.color} postfix={i == 1 ? "+" : ""} />
+                    <p className="text-xs text-zinc-400">{m.yearsLabel}</p>
                   </div>
                   <div>
-                    <Counter value={m.signals} color={m.color} />
-                    <p className="text-xs text-zinc-400">Signals</p>
+                    <p className="text-zinc-400 text-base">As</p>
                   </div>
                   <div>
-                    <Counter value={m.systems} color={m.color} />
-                    <p className="text-xs text-zinc-400">Systems</p>
+                    <p className="text-zinc-400 text-base">{m.position}</p>
                   </div>
                 </div>
 
@@ -311,32 +319,6 @@ export default function MissionFiles(): JSX.Element {
 
                   <p className="text-sm text-emerald-400 mt-4 font-mono">STATUS ▸ {m.status}</p>
                 </motion.div>
-
-                {activeMission?.id === m.id && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute left-0 top-full mt-6 w-full bg-black/90 border border-white/10 rounded-2xl p-6 z-40">
-                    <p className="text-sm text-zinc-400 mb-3 font-mono">🧠 Objective</p>
-                    <p className="text-zinc-200 text-sm">{m.objective}</p>
-
-                    <p className="text-sm text-zinc-400 mt-4 mb-2 font-mono">📡 Signals & Systems</p>
-                    <div className="grid grid-cols-3 gap-3 text-center">
-                      <div>📆 {m.years}y</div>
-                      <div>📊 {m.signals}</div>
-                      <div>🧩 {m.systems}</div>
-                    </div>
-
-                    <p className="text-sm text-zinc-400 mt-4 mb-2 font-mono">⚙️ Key Ops</p>
-                    <ul className="list-disc list-inside text-xs text-zinc-300 space-y-1">
-                      {m.responsibilities.slice(0, 3).map((r) => (
-                        <li key={r}>{r}</li>
-                      ))}
-                    </ul>
-
-                    <p className="text-sm text-emerald-400 mt-4 font-mono">Status: {m.status}</p>
-                  </motion.div>
-                )}
               </CardContent>
             </Card>
           </motion.div>
