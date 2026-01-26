@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface PageLoaderProps {
   onLoadingComplete: () => void;
@@ -34,8 +34,7 @@ const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => {
         initial={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
-      >
+        className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         {/* Animated Background Grid */}
         <div className="absolute inset-0 opacity-20">
           <div
@@ -45,8 +44,8 @@ const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => {
                 linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)
               `,
-              backgroundSize: '40px 40px',
-              animation: 'gridMove 8s linear infinite'
+              backgroundSize: "40px 40px",
+              animation: "gridMove 8s linear infinite",
             }}
           />
         </div>
@@ -58,8 +57,7 @@ const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => {
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="mb-8"
-          >
+            className="mb-8">
             <div className="w-24 h-24 mx-auto bg-gradient-to-r from-cyan-400 to-green-400 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/50">
               <span className="text-3xl">⚡</span>
             </div>
@@ -72,14 +70,9 @@ const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="mb-8"
-              >
-                <h1 className="text-4xl md:text-6xl font-bold text-cyan-400 mb-4 font-mono">
-                  Welcome to
-                </h1>
-                <h2 className="text-3xl md:text-5xl font-bold text-green-400 font-mono">
-                  Hunny's Control Room
-                </h2>
+                className="mb-8">
+                <h1 className="text-4xl md:text-6xl font-bold text-cyan-400 mb-4 font-mono">Welcome to</h1>
+                <h2 className="text-3xl md:text-5xl font-bold text-green-400 font-mono">Hunny's Control Room</h2>
               </motion.div>
             )}
           </AnimatePresence>
@@ -101,8 +94,7 @@ const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="text-gray-400 font-mono text-sm"
-          >
+            className="text-gray-400 font-mono text-sm">
             Initializing systems... {Math.round(progress)}%
           </motion.p>
 
@@ -114,12 +106,12 @@ const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => {
                 className="w-2 h-2 bg-cyan-400 rounded-full"
                 animate={{
                   scale: [1, 1.5, 1],
-                  opacity: [0.5, 1, 0.5]
+                  opacity: [0.5, 1, 0.5],
                 }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
-                  delay: index * 0.2
+                  delay: index * 0.2,
                 }}
               />
             ))}
@@ -127,10 +119,10 @@ const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => {
         </div>
 
         {/* Corner Decorations */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-l-2 border-t-2 border-cyan-400 opacity-50"></div>
-        <div className="absolute top-8 right-8 w-12 h-12 border-r-2 border-t-2 border-green-400 opacity-50"></div>
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-l-2 border-b-2 border-purple-400 opacity-50"></div>
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-r-2 border-b-2 border-cyan-400 opacity-50"></div>
+        <div className="absolute md:top-8 top-4 md:left-8 left-4 w-16 h-16 border-l-2 border-t-2 border-cyan-400 opacity-50"></div>
+        <div className="absolute md:top-8 top-4 md:right-8 right-4 w-16 h-16 border-r-2 border-t-2 border-purple-400 opacity-50"></div>
+        <div className="absolute md:bottom-8 bottom-4 md:left-8 left-4 w-16 h-16 border-l-2 border-b-2 border-green-400 opacity-50"></div>
+        <div className="absolute md:bottom-8 bottom-4 md:right-8 right-4 w-16 h-16 border-r-2 border-b-2 border-cyan-400 opacity-50"></div>
       </motion.div>
     </AnimatePresence>
   );

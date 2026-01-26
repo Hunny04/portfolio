@@ -2,7 +2,7 @@ export function FeatureCard({ item }: { item: any }) {
   return (
     <div className="group relative w-full max-w-sm">
       {/* Base Card */}
-      <div className="relative z-10 rounded-xl border border-white/10 bg-[#0b1220] p-6 transition-all duration-300 group-hover:-translate-y-2 group-hover:border-cyan-400/60">
+      <div className="relative z-10 rounded-xl border border-white/10 bg-[#0b1220] md:p-6 p-3 transition-all duration-300 group-hover:-translate-y-2 group-hover:border-cyan-400/60">
         <div className="flex items-center gap-3">
           <span className="text-2xl">{item.icon}</span>
           <h3 className="text-lg font-semibold text-white">{item.title}</h3>

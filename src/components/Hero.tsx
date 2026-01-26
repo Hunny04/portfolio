@@ -62,7 +62,7 @@ const Hero: React.FC<HeroProps> = ({ onEnterControlRoom }) => {
       />
 
       {/* Floating Control Panels */}
-      <div className="absolute top-20 left-20 w-64 h-32 bg-black/30 backdrop-blur-sm border border-cyan-400/30 rounded-lg p-4">
+      <div className="absolute top-20 left-20 md:block hidden w-64 h-32 bg-black/30 backdrop-blur-sm border border-cyan-400/30 rounded-lg p-4">
         <div className="text-xs text-cyan-400 mb-2">SYSTEM STATUS</div>
         <div className="space-y-1">
           <div className="flex justify-between text-xs">
@@ -75,7 +75,7 @@ const Hero: React.FC<HeroProps> = ({ onEnterControlRoom }) => {
         </div>
       </div>
 
-      <div className="absolute top-20 right-20 w-64 h-32 bg-black/30 backdrop-blur-sm border border-purple-400/30 rounded-lg p-4">
+      <div className="absolute top-20 right-20 md:block hidden w-64 h-32 bg-black/30 backdrop-blur-sm border border-purple-400/30 rounded-lg p-4">
         <div className="text-xs text-purple-400 mb-2">NETWORK TRAFFIC</div>
         <div className="space-y-1">
           <div className="flex justify-between text-xs">
@@ -92,13 +92,13 @@ const Hero: React.FC<HeroProps> = ({ onEnterControlRoom }) => {
       </div>
 
       {/* Main Content */}
-      <div className="text-center z-10 relative">
+      <div className="text-center z-10 relative md:px-0 px-8">
         {/* Name Header */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="mb-8">
+          className="md:mb-8 mb-4 md:pt-0 pt-16">
           <h1 className="text-4xl md:text-6xl font-bold text-cyan-400 mb-2 font-mono">HUNNY PATEL</h1>
           <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto"></div>
         </motion.div>
@@ -158,7 +158,7 @@ const Hero: React.FC<HeroProps> = ({ onEnterControlRoom }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3.5 }}
-          className="bg-gradient-to-r from-cyan-400 to-green-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 relative overflow-hidden group"
+          className="bg-gradient-to-r from-cyan-400 to-green-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 relative overflow-hidden group md:mb-0 mb-16"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={onEnterControlRoom}>
@@ -168,10 +168,10 @@ const Hero: React.FC<HeroProps> = ({ onEnterControlRoom }) => {
       </div>
 
       {/* Corner Decorations */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-cyan-400 opacity-50"></div>
-      <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-purple-400 opacity-50"></div>
-      <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-green-400 opacity-50"></div>
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-cyan-400 opacity-50"></div>
+      <div className="absolute md:top-8 top-4 md:left-8 left-4 w-16 h-16 border-l-2 border-t-2 border-cyan-400 opacity-50"></div>
+      <div className="absolute md:top-8 top-4 md:right-8 right-4 w-16 h-16 border-r-2 border-t-2 border-purple-400 opacity-50"></div>
+      <div className="absolute md:bottom-8 bottom-4 md:left-8 left-4 w-16 h-16 border-l-2 border-b-2 border-green-400 opacity-50"></div>
+      <div className="absolute md:bottom-8 bottom-4 md:right-8 right-4 w-16 h-16 border-r-2 border-b-2 border-cyan-400 opacity-50"></div>
     </section>
   );
 };

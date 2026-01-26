@@ -10,7 +10,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-dark-bg to-navy-bg p-32">
+    <section className="min-h-screen bg-gradient-to-br from-dark-bg to-navy-bg md:px-32 md:py-32 px-8 py-16">
       <div className="max-w-6xl mx-auto flex flex-col items-center justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-8 ">
           {/* Timeline */}

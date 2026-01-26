@@ -50,7 +50,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <section className="min-h-screen py-20 px-4 relative">
+    <section className="min-h-screen md:py-20 py-16 px-4 relative">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -60,7 +60,7 @@ const Dashboard = () => {
         </motion.h2>
 
         {/* Strategy Modes */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 md:gap-y-6 gap-y-10 gap-x-6 mb-16">
           {growthItems.map((item) => (
             <FeatureCard key={item.title} item={item} />
           ))}

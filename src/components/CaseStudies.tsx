@@ -183,28 +183,32 @@ export default function MissionFiles(): JSX.Element {
   const y = useTransform(scrollYProgress, [0, 1], [0, -180]);
 
   return (
-    <section id="mission-files" className="min-h-screen bg-black text-white px-6 py-24 relative overflow-hidden">
+    <section
+      id="mission-files"
+      className="min-h-screen bg-black text-white px-6 md:py-24 py-16 relative overflow-hidden">
       {/* CRT Scanlines */}
       <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.03)_0px,rgba(255,255,255,0.03)_1px,transparent_2px,transparent_4px)] opacity-20" />
       {/* HERO */}
-      <motion.div style={{ y }} className="max-w-6xl mx-auto text-center mt-24 mb-10">
-        <h1 className="text-6xl md:text-7xl font-bold">Mission Files</h1>
-        <p className="mt-6 text-2xl text-zinc-300">Classified records of strategy, growth systems, and execution.</p>
+      <motion.div style={{ y }} className="max-w-6xl mx-auto text-center md:mt-24 mt-10 mb-10">
+        <h1 className="text-5xl md:text-7xl font-bold">Mission Files</h1>
+        <p className="mt-6 text-lg md:text-2xl text-zinc-300">
+          Classified records of strategy, growth systems, and execution.
+        </p>
       </motion.div>
 
       {/* GLOBAL COUNTERS */}
-      <div className="max-w-5xl mx-auto grid grid-cols-3 gap-10 text-center mb-28">
-        <div>
+      <div className="max-w-5xl mx-auto grid grid-cols-6 md:grid-cols-3 md:gap-10 gap-4 text-center mb-28">
+        <div className="col-span-2 md:col-span-1">
           <Counter value={3} postfix="+" />
           <p className="text-zinc-400 mt-2">Years Experience</p>
         </div>
-        <div>
-          <p className="text-zinc-400 mt-2 text-4xl">As</p>
+        <div className="col-span-1">
+          <p className="text-zinc-400 mt-2 text-2xl md:text-4xl">As</p>
         </div>
-        <div>
+        <div className="col-span-3 md:col-span-1">
           <RotatingText
             texts={["Brand Strategist", "Marketing Head", "Creative Creator", "Digital Marketing", "SEO Specialist"]}
-            mainClassName="px-2 sm:px-2 md:px-3 bg-transparent text-4xl text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+            mainClassName="px-2 sm:px-2 md:px-3 bg-transparent text-3xl md:text-4xl text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
             staggerFrom={"last"}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
@@ -233,7 +237,7 @@ export default function MissionFiles(): JSX.Element {
               style={{
                 border: `6px solid ${m.color}`,
               }}>
-              <CardContent className="p-8 relative">
+              <CardContent className="md:px-8 py-8 px-4 relative">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-4">
                     {/* <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xl">
@@ -273,7 +277,7 @@ export default function MissionFiles(): JSX.Element {
                   <LiveDot /> LIVE SIGNAL · Hover to decode ░░░
                 </p>
 
-                {activeMission?.id === m.id && (
+                {(activeMission?.id === m.id || window.innerWidth < 769) && (
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
