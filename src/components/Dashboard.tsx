@@ -37,14 +37,16 @@ const Dashboard = () => {
   ];
 
   const imageLogos = [
-    { src: "/logos/google-analytics.svg", alt: "Company 1", href: "https://company1.com" },
-    { src: "/logos/google-search-console.svg", alt: "Company 2", href: "https://company2.com" },
-    { src: "/logos/meta-ads.svg", alt: "Company 3", href: "https://company3.com" },
-    { src: "/logos/google-ads.svg", alt: "Company 4", href: "https://company4.com" },
-    { src: "/logos/canva.svg", alt: "Company 5", href: "https://company5.com" },
-    { src: "/logos/figma.svg", alt: "Company 6", href: "https://company6.com" },
-    { src: "/logos/chatgpt.svg", alt: "Company 7", href: "https://company7.com" },
-    { src: "/logos/photoshop.svg", alt: "Company 8", href: "https://company8.com" },
+    { src: "/images/google_analytics.webp", alt: "Google Analytics" },
+    { src: "/images/google-search-console.png", alt: "Google Search Console" },
+    { src: "/images/meta-ads.png", alt: "Meta Ads" },
+    { src: "/images/google-ads.png", alt: "Google Ads" },
+    { src: "/images/canva.png", alt: "Canva" },
+    { src: "/images/chatgpt.jpg", alt: "ChatGPT" },
+    { src: "/images/clarity-logo.png", alt: "Clarity" },
+    { src: "/images/Google-Review.png", alt: "Google Review" },
+    { src: "/images/semrush.svg", alt: "SEMrush" },
+    { src: "/images/whatsapp-business.png", alt: "WhatsApp Business" },
   ];
 
   return (
@@ -195,7 +197,7 @@ const Dashboard = () => {
                 <h4 className="text-lg font-semibold text-gray-300 mb-4">Core Tools</h4>
                 {/* TOOLS */}
                 <LogoLoop
-                  logos={imageLogos}
+                  logos={[...imageLogos].sort(() => Math.random() - 0.5)}
                   speed={50}
                   direction="left"
                   logoHeight={60}
@@ -216,7 +218,7 @@ const Dashboard = () => {
                   }}
                 />
                 <LogoLoop
-                  logos={imageLogos}
+                  logos={[...imageLogos].sort(() => Math.random() - 0.5)}
                   speed={50}
                   direction="right"
                   logoHeight={60}
@@ -237,7 +239,7 @@ const Dashboard = () => {
                   }}
                 />
                 <LogoLoop
-                  logos={imageLogos}
+                  logos={[...imageLogos].sort(() => Math.random() - 0.5)}
                   speed={50}
                   direction="left"
                   logoHeight={60}
@@ -258,7 +260,7 @@ const Dashboard = () => {
                   }}
                 />
                 <LogoLoop
-                  logos={imageLogos}
+                  logos={[...imageLogos].sort(() => Math.random() - 0.5)}
                   speed={50}
                   direction="right"
                   logoHeight={60}
