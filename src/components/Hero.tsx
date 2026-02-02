@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
+import { ArrowBigDownDash, ArrowBigLeftDash } from "lucide-react";
+import { useIsMobile } from "@/hooks/isMobile";
 
 gsap.registerPlugin(TextPlugin);
 
@@ -13,6 +15,7 @@ const Hero: React.FC<HeroProps> = ({ onEnterControlRoom }) => {
   const [showSubtext, setShowSubtext] = useState(false);
   const [systemBooted, setSystemBooted] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -154,17 +157,25 @@ const Hero: React.FC<HeroProps> = ({ onEnterControlRoom }) => {
         </div>
 
         {/* Control Room Access Button */}
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3.5 }}
-          className="bg-gradient-to-r from-cyan-400 to-green-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 relative overflow-hidden group md:mb-0 mb-16"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onEnterControlRoom}>
-          <span className="relative z-10">▶ Enter Control Room</span>
-          <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </motion.button>
+        <div className="relative md:pt-0 pt-4">
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 3.5 }}
+            className="bg-gradient-to-r from-cyan-400 to-green-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 relative overflow-hidden group md:mb-0 mb-16"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onEnterControlRoom}>
+            <span className="relative z-10">▶ Enter Control Room</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </motion.button>
+          <motion.p
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="text-sm text-cyan-400 mt-2 absolute md:right-[22%] right-[25%] md:top-4 -top-4 flex items-center gap-1">
+            {isMobile ? <ArrowBigDownDash /> : <ArrowBigLeftDash />} Click here to view details
+          </motion.p>
+        </div>
       </div>
 
       {/* Corner Decorations */}
