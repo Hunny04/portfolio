@@ -72,7 +72,7 @@ const About: React.FC = () => {
                 </motion.a>
 
                 <motion.a
-                  href="/HunnyPatel_Resume.pdf"
+                  href="/Hunny-Resume.pdf"
                   download
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
